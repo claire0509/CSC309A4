@@ -34,13 +34,13 @@ app.factory('postService', function($resource){
 
 app.controller('mainController', function(postService, $scope, $rootScope){
 	$scope.posts = postService.query();
-	$scope.newPost = {created_by: '', created_at: '', location: '', tcommute: '', nrooms: '', nbathrooms: '', price: '', description: ''};
+	$scope.newPost = {created_by: '', created_at: '', location: '', tcommute: '', nroom: '', nbathroom: '', price: '', description: '', img: ''};
 	$scope.post = function() {
 	  $scope.newPost.created_by = $rootScope.current_user;
 	  $scope.newPost.created_at = Date.now();
 	  postService.save($scope.newPost, function(){
 	    $scope.posts = postService.query();
-	    $scope.newPost = {created_by: '', created_at: '', location: '', tcommute: '', nrooms: '', nbathrooms: '', price: '', description: ''};
+	    $scope.newPost = {created_by: '', created_at: '', location: '', tcommute: '', nroom: '', nbathroom: '', price: '', description: '', img: ''};
 	  });
 	};
 });

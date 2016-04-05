@@ -28,8 +28,13 @@ router.route('/posts')
 	.post(function(req, res){
 
 		var post = new Post();
-		post.text = req.body.text;
+		post.description = req.body.description;
 		post.created_by = req.body.created_by;
+		post.location = req.body.location;
+		post.tcommute = req.body.tcommute;
+		post.nroom = req.body.nroom;
+		post.nbathroom = req.body.nbathroom;
+		post.price = req.body.price;
 		post.save(function(err, post) {
 			if (err){
 				return res.send(500, err);
@@ -66,7 +71,12 @@ router.route('/posts/:id')
 				res.send(err);
 
 			post.created_by = req.body.created_by;
-			post.text = req.body.text;
+			post.description = req.body.description;
+			post.location = req.body.location;
+			post.tcommute = req.body.tcommute;
+			post.nroom = req.body.nroom;
+			post.nbathroom = req.body.nbathroom;
+			post.price = req.body.price;
 
 			post.save(function(err, post){
 				if(err)

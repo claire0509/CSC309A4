@@ -1,14 +1,26 @@
 <div class="clearfix">
   <form ng-Submit="post()" ng-show="authenticated">
-    <h4>{{current_user}} says</h4>
-    <textarea required class="form-control" maxlength="200" rows="3" placeholder="Say something" ng-model="newPost.text"></textarea>
-    <input class="btn submit-btn pull-right" type="submit" value="Chirp!" />
+    <h4>New Room Ad:</h4>
+    <textarea required class="form-control" maxlength="20" rows="1" placeholder="Location (Address)" ng-model="newPost.location"></textarea> 
+    <textarea required class="form-control" maxlength="20" rows="1" placeholder="Time to Commute(Min)" ng-model="newPost.tcommute"></textarea> 
+    <textarea required class="form-control" maxlength="20" rows="1" placeholder="Number of Rooms" ng-model="newPost.nroom"></textarea>
+    <textarea required class="form-control" maxlength="20" rows="3" placeholder="Number of Bathrooms" ng-model="newPost.nbathroom"></textarea> 
+    <textarea required class="form-control" maxlength="20" rows="1" placeholder="Price per Month($)" ng-model="newPost.price"></textarea>    
+    <textarea required class="form-control" maxlength="200" rows="3" placeholder="Room Description" ng-model="newPost.description"></textarea>
+    <input class="btn submit-btn pull-right" type="submit" value="Room Posting" />
   </form>
 </div>
 <div id="post-stream">
 	<h4>Room Postings</h4>
 		<div class="post" ng-repeat="post in posts | orderBy:'created_at':true" ng-class-odd="'odd'" ng-class-even="'even'"> 
-			<p>{{post.text}}</p>
+			<p> 
+				<img src={{post.img}} alt="Image" style="float:right; width:30%; height:25%"
+			<p>Location: {{post.location}}</p>
+			<p>Distance: {{post.tcommute}}</p>
+			<p>Number of Rooms: {{post.nroom}}</p>
+			<p>Number of Bathrooms: {{post.nbatroom}}</p>
+			<p>Price: $ {{post.price}} / per Month&nbsp; </p>
+			<div style="border-radius:25px; border:1px solid; text-align:center; padding:5px">{{post.description}}</div>
 			<small>Posted by @{{post.created_by}}</small>
 			<small class="pull-right">{{post.created_at | date:"h:mma 'on' MMM d, y"}}</small>
 		</div>

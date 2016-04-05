@@ -13,7 +13,10 @@ var postSchema = new mongoose.Schema({
 	nroom: String,
 	nbathroom: String,
 	price: String,
-	description: String
+	description: String,
+	
+
+	//img: {type: File, default: require('./img/image.png')},
 
 	//Comments and Likes
 });
