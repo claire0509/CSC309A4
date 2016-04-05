@@ -15,24 +15,22 @@
 </div>
 <div id="post-stream">
     <a class="post list-group-item" href ng-repeat="post in posts | orderBy:'created_at':true" ng-class-odd="'odd'" ng-class-even="'even'">
-        <div class="">
-            <div class="row">
-                <div class="col-md-3">
-                    <div class="span4"></div>
-                    <img src={{post.img}} alt="Responsive image" class="img-rounded img-default text-center"/>
-                    <div class="span4"></div>
-                </div>
-                <div class="col-md-9">
-                    <h3 class="list-group-item-heading">{{post.location}} <small>{{post.tcommute}} km</small></h3><br>
-                    <ul class="list-unstyled">
-                        <li><strong>$ {{post.price}}</strong> / month</li>
-                        <li><strong>{{post.nroom}}</strong> rooms</li>
-                        <li><strong>{{post.nbatroom}}</strong> bathrooms</li>
-                    </ul>
-                    <p class="list-group-item-text">{{post.description}}</p><br>
-                    <small>Posted by @{{post.created_by}}</small>
-                    <small class="pull-right">{{post.created_at | date:"h:mm a 'on' MMM d, y"}}</small>
-                </div>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="span4"></div>
+                <img src={{post.img}} alt="Responsive image" class="img-rounded img-default text-center"/>
+                <div class="span4"></div>
+            </div>
+            <div class="col-md-9">
+                <h3 class="list-group-item-heading">{{post.location}} <small>{{post.tcommute}}</small></h3><br>
+                <ul class="list-unstyled">
+                    <li><strong>$ {{post.price}}</strong> / month</li>
+                    <li><strong>{{post.nroom}}</strong> rooms</li>
+                    <li><strong>{{post.nbathroom}}</strong> bathrooms</li>
+                </ul>
+                <p class="list-group-item-text">{{post.description}}</p><br>
+                <small>Posted by @{{post.created_by}}</small>
+                <small class="pull-right">{{post.created_at | date:"h:mm a 'on' MMM d, y"}}</small>
             </div>
         </div>
     </a>
