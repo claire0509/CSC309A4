@@ -25,6 +25,11 @@ app.config(function($routeProvider){
 		.when('/register', {
 			templateUrl: 'register.html',
 			controller: 'authController'
+		})
+		//the signup display
+		.when('/profile', {
+			templateUrl: 'profile.html',
+			controller: 'authController'
 		});
 });
 
