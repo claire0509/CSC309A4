@@ -7,18 +7,12 @@ a {
 	margin: 10px 0 10px 0;
 }
 
-.post {
-	padding: 10px;
-	margin-bottom: 5px;
-	border-radius: 5px;
-}
-
 .odd {
 	background-color: #f2f9ff;
 	
 }
 .even {
-	background-color: #eceff3;
+	background-color: #ffffff;
 }
 
 .form-auth {
@@ -35,6 +29,7 @@ html, body {
     height: 100%;
     margin: 0;
     padding: 0;
+    background: #f8f8f8;
 }
 
 .v-center {
@@ -52,10 +47,6 @@ html, body {
 .main-content {
     margin: 48px 0;
     padding: 16px 0;
-}
-
-.panel-dark {
-    background: #f8f8f8;
 }
 
 .navbar-right {
