@@ -1,17 +1,39 @@
-<div class="clearfix">
-    <form ng-Submit="post()" ng-show="authenticated">
-        <h4>New Room Ad:</h4>
-        <textarea required class="form-control" maxlength="20" rows="1" placeholder="Location (Address)" ng-model="newPost.location"></textarea> 
-        <textarea required class="form-control" maxlength="20" rows="1" placeholder="Time to Commute(Min)" ng-model="newPost.tcommute"></textarea> 
-        <textarea required class="form-control" maxlength="20" rows="1" placeholder="Number of Rooms" ng-model="newPost.nroom"></textarea>
-        <textarea required class="form-control" maxlength="20" rows="3" placeholder="Number of Bathrooms" ng-model="newPost.nbathroom"></textarea> 
-        <textarea required class="form-control" maxlength="20" rows="1" placeholder="Price per Month($)" ng-model="newPost.price"></textarea>    
-        <textarea required class="form-control" maxlength="200" rows="3" placeholder="Room Description" ng-model="newPost.description"></textarea>
-        <input class="btn submit-btn pull-right" type="submit" value="Room Posting" />
-    </form>
-</div>
 <div class="page-header">
-    <h3>Postings <small>Find your roommate!</small></h3>
+    <h3>Postings <small class="res-block">Find your roommate 
+        <span ng-show="authenticated">or 
+            <a role="button" data-toggle="collapse" data-target="#newpost" aria-expanded="false" aria-controls="newpost">
+                Create a new post
+            </a>
+        </span>
+        </small>
+    </h3>
+</div>
+<div class="collapse" id="newpost">
+    <div class="well">
+        <h4>Create a new post</h4>
+        <br>
+        <form ng-Submit="post()">
+            <div class="form-group">
+                <input required class="form-control" maxlength="20" rows="1" placeholder="Location (Address)" ng-model="newPost.location">
+            </div>
+            <div class="form-group">
+                <textarea required class="form-control" maxlength="20" rows="1" placeholder="Time to Commute(Min)" ng-model="newPost.tcommute"></textarea> 
+            </div>
+            <div class="form-group">
+                <textarea required class="form-control" maxlength="20" rows="1" placeholder="Number of Rooms" ng-model="newPost.nroom"></textarea>
+            </div>
+            <div class="form-group">
+                <textarea required class="form-control" maxlength="20" rows="3" placeholder="Number of Bathrooms" ng-model="newPost.nbathroom"></textarea> 
+            </div>
+            <div class="form-group">
+                <textarea required class="form-control" maxlength="20" rows="1" placeholder="Price per Month($)" ng-model="newPost.price"></textarea> 
+            </div>
+            <div class="form-group">   
+                <textarea required class="form-control" maxlength="200" rows="3" placeholder="Room Description" ng-model="newPost.description"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary text-right" data-toggle="collapse" data-target="#newpost">Post</button>
+        </form>
+    </div>
 </div>
 <div id="post-stream">
     <a class="list-group-item" href ng-repeat="post in posts | orderBy:'created_at':true" ng-class-odd="'odd'" ng-class-even="'even'">

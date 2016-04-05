@@ -1,24 +1,20 @@
-a {
-	color: #00B7FF;
-}
-
 .submit-btn {
-	background-color: #b1dbff;
-	margin: 10px 0 10px 0;
+    background-color: #b1dbff;
+    margin: 10px 0 10px 0;
 }
 
 .odd {
-	background-color: #f2f9ff;
-	
+    background-color: #f2f9ff;
+
 }
 .even {
-	background-color: #ffffff;
+    background-color: #ffffff;
 }
 
 .form-auth {
-	max-width: 330px;
-	padding: 5px;
-	margin: 0 auto;
+    max-width: 330px;
+    padding: 5px;
+    margin: 0 auto;
 }
 
 /****************************************************
@@ -76,11 +72,16 @@ html, body {
     .navbar-right li p a {
         width: 100%;
     }
-    
+
     .img-default {
         margin-left: auto;
         margin-right: auto;
         margin-bottom: 16px;
+    }
+
+    .res-block {
+        margin-top: 6px;
+        display: block;
     }
 
 }
