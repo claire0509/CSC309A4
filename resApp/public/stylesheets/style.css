@@ -35,7 +35,6 @@ html, body {
     height: 100%;
     margin: 0;
     padding: 0;
-    background: #f8f8f8;
 }
 
 .v-center {
@@ -55,6 +54,10 @@ html, body {
     padding: 16px 0;
 }
 
+.panel-dark {
+    background: #f8f8f8;
+}
+
 .navbar-right {
     padding-right: 15px;
 }
@@ -68,8 +71,9 @@ html, body {
 }
 
 .img-default {
-    height: 140px;
-    width: 140px;
+    display: table-cell;
+    height:  175px;
+    width: 175px;
 }
 
 @media (max-width: 767px) {
@@ -85,6 +89,7 @@ html, body {
     .img-default {
         height: 70px;
         width: 70px;
+        display: block;
     }
 
 }
