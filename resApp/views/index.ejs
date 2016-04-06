@@ -30,24 +30,24 @@
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" >
                         <ul class="nav navbar-nav navbar-right">
-                            <li data-toggle="collapse" data-target=".navbar-collapse" ng-hide="authenticated">
+                            <li class="trig-collapse" ng-hide="authenticated">
                                 <p class="navbar-btn">
                                     <a href="/#/login" class="btn btn-default">Login</a>
                                 </p>
                             </li>
-                            <li data-toggle="collapse" data-target=".navbar-collapse" ng-hide="authenticated">
+                            <li class="trig-collapse" ng-hide="authenticated">
                                 <p class="navbar-btn">
                                     <a href="/#/register" class="btn btn-default btn-success">Register</a>
                                 </p>
                             </li>
-                            <li data-toggle="collapse" data-target=".navbar-collapse" class="dropdown" ng-show="authenticated">
+                            <li ng-show="authenticated">
                                 <a href class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                                     <span class="glyphicon glyphicon-user" style="color: white" aria-hidden="true"></span> <span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="/#/profile">My profile</a></li>
+                                    <li class="trig-collapse" ><a href="/#/profile">My profile</a></li>
                                     <li role="separator" class="divider"></li>
-                                    <li><a href="#" ng-click="signout()">Logout</a></li>
+                                    <li class="trig-collapse" ><a href="#" ng-click="signout()">Logout</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -69,4 +69,12 @@
     </body>
     <script src="javascripts/jquery-2.2.1.min.js"></script>
     <script src="javascripts/bootstrap.min.js"></script>
+    <script>
+        /* navbar collapse for mobile devices */
+        $(document).ready(function () {
+            $(".navbar-nav li.trig-collapse").click(function(event) {
+                $(".navbar-collapse").collapse('hide');
+            });
+        });
+    </script>
 </html>
