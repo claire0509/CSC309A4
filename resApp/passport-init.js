@@ -49,7 +49,7 @@ module.exports = function(passport){
 	passport.use('signup', new LocalStrategy({
 			passReqToCallback : true // allows us to pass back the entire request to the callback
 		},
-		function(req, username, password, fname, lname, school, done) {
+		function(req, username, password, done) {
 
 			// find a user in mongo with provided username
 			User.findOne({ 'username' :  username }, function(err, user) {
@@ -69,9 +69,6 @@ module.exports = function(passport){
 					// set the user's local credentials
 					newUser.username = username;
 					newUser.password = createHash(password);
-					newUser.fname = fname;
-					newUser.lname = lname;
-					newUser.school = school;
 
 					// save the user
 					newUser.save(function(err) {
