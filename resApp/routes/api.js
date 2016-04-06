@@ -129,11 +129,7 @@ router.route('/users')
 				res.send(err);
 
 			user.username = req.body.username;
-			user.password = createHash(req.body.password);
-			user.fname = req.body.fname;
-			user.lname = req.body.lname;
-			user.school = req.body.school;
-			user.save(function(err, user){
+			user.password = createHash(req.body.password);			user.save(function(err, user){
 				if(err)
 					res.send(err);
 

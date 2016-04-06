@@ -23,7 +23,7 @@ app.config(function($routeProvider){
 		})
 		//the signup display
 		.when('/register', {
-			templateUrl: 'register.html',
+			templateUrl: 'signup.html',
 			controller: 'authController'
 		})
 		//the signup display
@@ -58,12 +58,12 @@ app.factory('profileService', function($resource){
 
 app.controller('userController', function(profileService, $scope, $rootScope){
 	$scope.users = profileService.query();
-	$scope.newUser = {username: '', password: '', fname: '', lname: '', school: ''};
+	$scope.newUser = {username: '', password: ''};
 	$scope.post = function() {
 	  $scope.newUser.username = $rootScope.current_user;
 	  profileService.save($scope.newUser, function(){
 	    $scope.users = profileService.query();
-	    $scope.newUser = {username: '', password: '', fname: '', lname: '', school: ''};
+	    $scope.newUser = {username: '', password: ''};
 	  });
 	};
 });

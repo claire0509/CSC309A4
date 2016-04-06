@@ -15,8 +15,6 @@ var postSchema = new mongoose.Schema({
 	price: String,
 	description: String,
 
-	
-
 	img: {type: Buffer , default: './img/image.png'},
 
 	//Comments and Likes
@@ -25,11 +23,6 @@ var postSchema = new mongoose.Schema({
 var userSchema = new mongoose.Schema({
 	username: String, //email
 	password: String, //hash created from password
-
-	//edited
-	fname: String,
-	lname: String,
-	school: String,	
 })
 
 mongoose.model('Post', postSchema);
