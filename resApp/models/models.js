@@ -14,6 +14,7 @@ var postSchema = new mongoose.Schema({
 	nbathroom: String,
 	price: String,
 	description: String,
+
 	
 
 	img: {type: Buffer , default: './img/image.png'},

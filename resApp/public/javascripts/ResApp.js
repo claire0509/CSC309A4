@@ -29,7 +29,7 @@ app.config(function($routeProvider){
 		//the signup display
 		.when('/profile', {
 			templateUrl: 'profile.html',
-			controller: 'authController'
+			controller: 'userController'
 		});
 });
 
@@ -46,6 +46,24 @@ app.controller('mainController', function(postService, $scope, $rootScope){
 	  postService.save($scope.newPost, function(){
 	    $scope.posts = postService.query();
 	    $scope.newPost = {created_by: '', created_at: '', location: '', tcommute: '', nroom: '', nbathroom: '', price: '', description: '', img: ''};
+	  });
+	};
+});
+
+
+
+app.factory('profileService', function($resource){
+	return $resource('/api/users/:id');
+});
+
+app.controller('userController', function(profileService, $scope, $rootScope){
+	$scope.users = profileService.query();
+	$scope.newUser = {username: '', password: '', fname: '', lname: '', school: ''};
+	$scope.post = function() {
+	  $scope.newUser.username = $rootScope.current_user;
+	  profileService.save($scope.newUser, function(){
+	    $scope.users = profileService.query();
+	    $scope.newUser = {username: '', password: '', fname: '', lname: '', school: ''};
 	  });
 	};
 });
