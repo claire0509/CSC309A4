@@ -12,54 +12,79 @@
     <div class="well">
         <h4>Create a new post</h4>
         <br>
-        <form ng-Submit="post()">
-            <div class="form-group">
-                <input required class="form-control" maxlength="20" rows="1" placeholder="Location (Address)" ng-model="newPost.location">
+        <div class="row">
+            <div class="col-md-12">
+                <form ng-Submit="post()">
+                    <div class="form-group">
+                        <input required class="form-control" maxlength="20" rows="1" placeholder="Location (Address)" ng-model="newPost.location">
+                    </div>
+                    <div class="form-group">
+                        <textarea required class="form-control" maxlength="20" rows="1" placeholder="Time to Commute(Min)" ng-model="newPost.tcommute"></textarea> 
+                    </div>
+                    <div class="form-group">
+                        <textarea required class="form-control" maxlength="20" rows="1" placeholder="Number of Rooms" ng-model="newPost.nroom"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <textarea required class="form-control" maxlength="20" rows="3" placeholder="Number of Bathrooms" ng-model="newPost.nbathroom"></textarea> 
+                    </div>
+                    <div class="form-group">
+                        <textarea required class="form-control" maxlength="20" rows="1" placeholder="Price per Month($)" ng-model="newPost.price"></textarea> 
+                    </div>
+                    <div class="form-group">   
+                        <textarea required class="form-control" maxlength="200" rows="3" placeholder="Room Description" ng-model="newPost.description"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary text-right pull-right" data-toggle="collapse" data-target="#newpost">Post</button>
+                </form>
             </div>
-            <div class="form-group">
-                <textarea required class="form-control" maxlength="20" rows="1" placeholder="Time to Commute(Min)" ng-model="newPost.tcommute"></textarea> 
-            </div>
-            <div class="form-group">
-                <textarea required class="form-control" maxlength="20" rows="1" placeholder="Number of Rooms" ng-model="newPost.nroom"></textarea>
-            </div>
-            <div class="form-group">
-                <textarea required class="form-control" maxlength="20" rows="3" placeholder="Number of Bathrooms" ng-model="newPost.nbathroom"></textarea> 
-            </div>
-            <div class="form-group">
-                <textarea required class="form-control" maxlength="20" rows="1" placeholder="Price per Month($)" ng-model="newPost.price"></textarea> 
-            </div>
-            <div class="form-group">   
-                <textarea required class="form-control" maxlength="200" rows="3" placeholder="Room Description" ng-model="newPost.description"></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary text-right" data-toggle="collapse" data-target="#newpost">Post</button>
-        </form>
+        </div>
     </div>
 </div>
 <div id="post-stream">
-    <a class="list-group-item" href ng-repeat="post in posts | orderBy:'created_at':true" ng-class-odd="'odd'" ng-class-even="'even'">
+    <div class="list-group-item" ng-repeat="post in posts | orderBy:'created_at':true" ng-class-odd="'odd'" ng-class-even="'even'" data-toggle="collapse" data-targe="#newcomment">
         <div class="row">
-            <div class="col-md-3">
-                <div class="span4"></div>
-                <img ng-src="img:img/image.png;base64,{{post.img}}" alt="Responsive image" class="img-rounded img-default text-center"/>
-                <div class="span4"></div>
+            <div class="col-md-4">
+                <div class="row">
+                    <div class="col-md-12">
+                        <p class="post-title"><strong>{{post.location}}</strong>&nbsp;<span class="label label-default">{{post.tcommute}} min</span></p>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-9">
-                <h3 class="list-group-item-heading">{{post.location}} <small>{{post.tcommute}}</small></h3><br>
-                <ul class="list-unstyled">
-                    <li><strong>$ {{post.price}}</strong> / month</li>
-                    <li><strong>{{post.nroom}}</strong> rooms</li>
-                    <li><strong>{{post.nbathroom}}</strong> bathrooms</li>
-                </ul>
-                <p class="list-group-item-text">{{post.description}}</p><br>
-                <small>Posted by @{{post.created_by}}</small>
-                <small class="pull-right">{{post.created_at | date:"h:mm a 'on' MMM d, y"}}</small>
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="col-md-3">
+                        <p><strong>$ {{post.price}}</strong> / month</p>
+                    </div>
+                    <div class="col-md-3">
+                        <p><strong>{{post.nroom}}</strong> rooms</p>
+                    </div>
+                    <div class="col-md-2">
+                        <p><strong>{{post.nbathroom}}</strong> bath</p>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">   
-                <textarea required class="form-control" maxlength="200" rows="3" placeholder="Comment" ng-model="post.comment"></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary text-right" data-toggle="collapse" data-target="#newpost">Post</button>
         </div>
-    </a>
+        <div class="row">
+            <div class="col-md-12">
+                <p>{{post.description}}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <small>Posted by <abbr title="attribute">{{post.created_by}}</abbr> on {{post.created_at | date:"MMM d, y"}} <span class="pull-right"><a role="button" data-toggle="collapse" data-target="#newcomment" aria-expanded="false" aria-controls="newcomment" ng-show="authenticated">Leave a comment</a></span></small>
+            </div>
+        </div>
+        <div class="row collapse" id="newcomment">
+            <br>
+            <div class="col-md-12">
+                <form>
+                    <div class="form-group">   
+                        <textarea required class="form-control" maxlength="100" rows="2" placeholder="Comment" ng-model="post.comment"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-xs btn-primary text-right pull-right">Comment</button>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 
 
