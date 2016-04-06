@@ -16,7 +16,7 @@ var postSchema = new mongoose.Schema({
 	description: String,
 	
 
-	//img: {type: File, default: require('./img/image.png')},
+	img: {type: Buffer , default: './img/image.png'},
 
 	//Comments and Likes
 });
@@ -24,7 +24,6 @@ var postSchema = new mongoose.Schema({
 var userSchema = new mongoose.Schema({
 	username: String, //email
 	password: String, //hash created from password
-	created_at: {type: Date, default: Date.now},
 
 	//edited
 	fname: String,
