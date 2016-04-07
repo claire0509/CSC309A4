@@ -1,17 +1,12 @@
 from locust import HttpLocust, TaskSet, task
 
-import resouce
-
 # user credentials
 username = 'abc'
 password = '123'
 
 # user auth
-arg_u_a = 'abc'
-arg_u_b = 'abc'
-arg_u_c = 'hello'
-arg_u_d = 'world'
-arg_u_e = 'test'
+arg_u_a = 'Locust.io'
+arg_u_b = '1234'
 
 # post desc
 arg_p_a = 'Test location'
@@ -28,10 +23,7 @@ class UserTask(TaskSet):
 	def on_start(l):
 		l.client.post("/auth/signup", {
 			"username": arg_u_a,
-			"password": arg_u_b,
-			"fname": arg_u_c,
-			"lname": arg_u_d,
-			"email": arg_u_e
+			"password": arg_u_b
 		})
 	
 	@task(1)
@@ -45,7 +37,7 @@ class UserTask(TaskSet):
 		l.client.get("/")
 
 	@task(1)
-	def posts(l):
+	def post(l):
 		l.client.post("/api/posts", {
 			"location": arg_p_a, 
 			"description": arg_p_b, 
@@ -53,12 +45,14 @@ class UserTask(TaskSet):
 			"nroom": arg_p_d, 
 			"nbathroom": arg_p_e, 
 			"price": arg_p_f, 
-			"created_by": arg_p_g})
+			"created_by": arg_u_a})
+
+	@task(1)
+	def posts(l):
+		l.client.get("/api/users")
 		 
 
 class APITask(HttpLocust):
-
-	resource.setrlimit(resource.RLIMIT_NOFILE, (999999, 999999))
 
 	task_set = UserTask
 	min_wait = 5 * 1000
