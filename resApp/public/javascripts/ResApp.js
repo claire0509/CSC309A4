@@ -1,15 +1,27 @@
 var app = angular.module('ResApp', ['ngRoute', 'ngResource']).run(function($rootScope, $http) {
 	$rootScope.authenticated = false;
 	$rootScope.current_user = '';
-	
+    
+    if(Date.now() - localStorage.token < 259200000 ){
+        //force log in if token was set within 3 days
+        $rootScope.authenticated = true;
+        $rootScope.current_user = localStorage.user;
+    }else{
+        delete localStorage.token;
+        delete localStorage.user;
+    }
+    
 	$rootScope.signout = function(){
     	$http.get('auth/signout');
     	$rootScope.authenticated = false;
     	$rootScope.current_user = '';
+        delete localStorage.token;
+        delete localStorage.user;
 	};
 });
 
 app.config(function($routeProvider){
+
 	$routeProvider
 		//the timeline display
 		.when('/', {
@@ -37,8 +49,16 @@ app.factory('postService', function($resource){
 	return $resource('/api/posts/:id');
 });
 
+//app.factory('commentService', function($resource){
+//	return $resource('/api/posts/:id');
+//});
+
 app.controller('mainController', function(postService, $scope, $rootScope){
-	$scope.posts = postService.query();
+	$scope.newComment = {};
+    $scope.comment = function(){
+        console.log($scope.newComment.text);
+    };
+    $scope.posts = postService.query();
 	$scope.newPost = {created_by: '', created_at: '', location: '', tcommute: '', nroom: '', nbathroom: '', price: '', description: '', img: ''};
 	$scope.post = function() {
 	  $scope.newPost.created_by = $rootScope.current_user;
@@ -48,6 +68,8 @@ app.controller('mainController', function(postService, $scope, $rootScope){
 	    $scope.newPost = {created_by: '', created_at: '', location: '', tcommute: '', nroom: '', nbathroom: '', price: '', description: '', img: ''};
 	  });
 	};
+    
+
 });
 
 
@@ -78,6 +100,8 @@ app.controller('authController', function($scope, $http, $rootScope, $location){
         $rootScope.authenticated = true;
         $rootScope.current_user = data.user.username;
         $location.path('/');
+        localStorage.token = Date.now();
+        localStorage.user = data.user.username;
       }
       else{
         $scope.error_message = data.message;

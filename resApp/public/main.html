@@ -76,12 +76,12 @@
         <div class="row collapse" id="newcomment-{{$index}}">
             <br>
             <div class="col-md-12">
-                <form>
+                <!--<form ng-Submit="comment()">-->
                     <div class="form-group">   
-                        <textarea required class="form-control" maxlength="100" rows="2" placeholder="Comment" ng-model="post.comment"></textarea>
+                        <textarea required class="form-control" maxlength="100" rows="2" placeholder="Comment" ng-model="newComment.text"></textarea>
                     </div>
-                    <button type="submit" class="btn btn-xs btn-primary text-right pull-right">Comment</button>
-                </form>
+                    <button type="submit" ng-Click="comment()" class="btn btn-xs btn-primary text-right pull-right">Comment</button>
+                <!--</form>-->
             </div>
         </div>
     </div>
