@@ -54,7 +54,7 @@ html, body {
 .navbar {
     background: #337ab7;
     border: none;
-    box-shadow: 0 2px 8px #888888;
+    box-shadow: 0 1px 6px #000000;
 }
 
 .navbar-inverse .navbar-collapse,
