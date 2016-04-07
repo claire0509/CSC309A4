@@ -1,6 +1,7 @@
 var app = angular.module('ResApp', ['ngRoute', 'ngResource']).run(function($rootScope, $http) {
 	$rootScope.authenticated = false;
 	$rootScope.current_user = '';
+
     
     if(Date.now() - localStorage.token < 259200000 ){
         //force log in if token was set within 3 days
@@ -11,6 +12,7 @@ var app = angular.module('ResApp', ['ngRoute', 'ngResource']).run(function($root
         delete localStorage.user;
     }
     
+
 	$rootScope.signout = function(){
     	$http.get('auth/signout');
     	$rootScope.authenticated = false;
@@ -54,11 +56,14 @@ app.factory('postService', function($resource){
 //});
 
 app.controller('mainController', function(postService, $scope, $rootScope){
+
 	$scope.newComment = {};
     $scope.comment = function(){
         console.log($scope.newComment.text);
     };
-    $scope.posts = postService.query();
+
+	$scope.posts = postService.query();
+
 	$scope.newPost = {created_by: '', created_at: '', location: '', tcommute: '', nroom: '', nbathroom: '', price: '', description: '', img: ''};
 	$scope.post = function() {
 	  $scope.newPost.created_by = $rootScope.current_user;
@@ -78,7 +83,8 @@ app.factory('profileService', function($resource){
 	return $resource('/api/users/:id');
 });
 
-app.controller('userController', function(profileService, $scope, $rootScope){
+app.controller('userController', function(postService, profileService, $scope, $rootScope){
+	$scope.theUser = $theUser;
 	$scope.users = profileService.query();
 	$scope.newUser = {username: '', password: ''};
 	$scope.post = function() {
@@ -86,6 +92,17 @@ app.controller('userController', function(profileService, $scope, $rootScope){
 	  profileService.save($scope.newUser, function(){
 	    $scope.users = profileService.query();
 	    $scope.newUser = {username: '', password: ''};
+	  });
+	};
+
+	$scope.posts = postService.query();
+	$scope.newPost = {created_by: '', created_at: '', location: '', tcommute: '', nroom: '', nbathroom: '', price: '', description: '', img: ''};
+	$scope.post = function() {
+	  $scope.newPost.created_by = $rootScope.current_user;
+	  $scope.newPost.created_at = Date.now();
+	  postService.save($scope.newPost, function(){
+	    $scope.posts = postService.query();
+	    $scope.newPost = {created_by: '', created_at: '', location: '', tcommute: '', nroom: '', nbathroom: '', price: '', description: '', img: ''};
 	  });
 	};
 });
@@ -102,6 +119,7 @@ app.controller('authController', function($scope, $http, $rootScope, $location){
         $location.path('/');
         localStorage.token = Date.now();
         localStorage.user = data.user.username;
+
       }
       else{
         $scope.error_message = data.message;

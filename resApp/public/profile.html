@@ -1,12 +1,61 @@
 <div class="page-header">
-    <h3>Profile <small>@{{current_user}}</small></h3>
+    <h3>Profile <small> @{{theUser}}</small></h3>
 </div>
 <div id="profile-stream" ng-controller="userController">
-    <a class="list-group-item" href ng-repeat="user in users" ng-class-odd="'odd'" ng-class-even="'even'">
+	<div ng-model="theUser"></div>
+    <!-- <a class="list-group-item" href ng-repeat="user in users| filter:theUser" ng-class-odd="'odd'" ng-class-even="'even'">
         <div class="row">
             <div class="col-md-9">
                 <h3 class="list-group-item-heading">{{user.username}} </h3><br>
             </div>
         </div>
-    </a>
+    </a> -->
+    <h3> Posts Created by Me </h3>
+    <div class="list-group-item" ng-repeat="post in posts | filter:theUser" ng-class-odd="'one'" ng-class-even="'even'" data-toggle="collapse" data-targe="#newcomment">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="row">
+                    <div class="col-md-12">
+                        <p class="post-title"><strong>{{post.location}}</strong>&nbsp;<span class="label label-default">{{post.tcommute}} min</span></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="col-md-3">
+                        <p><strong>$ {{post.price}}</strong> / month</p>
+                    </div>
+                    <div class="col-md-3">
+                        <p><strong>{{post.nroom}}</strong> rooms</p>
+                    </div>
+                    <div class="col-md-2">
+                        <p><strong>{{post.nbathroom}}</strong> bath</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <p>{{post.description}}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <small>Posted by <abbr title="attribute">{{post.created_by}}</abbr> on {{post.created_at | date:"MMM d, y"}} <span class="pull-right"><a role="button" data-toggle="collapse" data-target="#newcomment-{{$index}}" aria-expanded="false" aria-controls="newcomment" ng-show="authenticated">Comment</a></span></small>
+            </div>
+        </div>
+        <div class="row collapse" id="newcomment-{{$index}}">
+            <br>
+            <div class="col-md-12">
+                <form>
+                    <div class="form-group">   
+                        <textarea required class="form-control" maxlength="100" rows="2" placeholder="Comment" ng-model="post.comment"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-xs btn-primary text-right pull-right">Comment</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
 </div>
+
