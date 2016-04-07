@@ -70,10 +70,10 @@
         </div>
         <div class="row">
             <div class="col-md-12">
-                <small>Posted by <abbr title="attribute">{{post.created_by}}</abbr> on {{post.created_at | date:"MMM d, y"}} <span class="pull-right"><a role="button" data-toggle="collapse" data-target="#newcomment" aria-expanded="false" aria-controls="newcomment" ng-show="authenticated">Leave a comment</a></span></small>
+                <small>Posted by <abbr title="attribute">{{post.created_by}}</abbr> on {{post.created_at | date:"MMM d, y"}} <span class="pull-right"><a role="button" data-toggle="collapse" data-target="#newcomment-{{$index}}" aria-expanded="false" aria-controls="newcomment" ng-show="authenticated">Comment</a></span></small>
             </div>
         </div>
-        <div class="row collapse" id="newcomment">
+        <div class="row collapse" id="newcomment-{{$index}}">
             <br>
             <div class="col-md-12">
                 <form>
