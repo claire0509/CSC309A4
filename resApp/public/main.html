@@ -39,8 +39,16 @@
         </div>
     </div>
 </div>
+
+
 <div id="post-stream">
-    <div class="list-group-item" ng-repeat="post in posts | orderBy:'created_at':true" ng-class-odd="'odd'" ng-class-even="'even'" data-toggle="collapse" data-targe="#newcomment">
+    <div class="form-group"> 
+        <input type="text" ng-model="search_loc" placeholder="Street Name">
+        <input type="text" ng-model="search_tcommute" placeholder="Commute Time (min)">
+        <input type="text" ng-model="search_price" placeholder="Price ($)">
+    </div>
+
+    <div class="list-group-item" ng-repeat="post in posts | orderBy:'created_at':true | filter:{location: search_loc, tcommute: search_tcommute, price: search_price}" ng-class-odd="'odd'" ng-class-even="'even'" data-toggle="collapse" data-targe="#newcomment">
         <div class="row">
             <div class="col-md-4">
                 <div class="row">
@@ -70,7 +78,7 @@
         </div>
         <div class="row">
             <div class="col-md-12">
-                <small>Posted by <abbr title="attribute">{{post.created_by}}</abbr> on {{post.created_at | date:"MMM d, y"}} <span class="pull-right"><a role="button" data-toggle="collapse" data-target="#newcomment-{{$index}}" aria-expanded="false" aria-controls="newcomment" ng-show="authenticated">Comment</a></span></small>
+                <small>Posted by <a href="{{window}}" ng-click="open(window)">{{post.created_by}}</a> on {{post.created_at | date:"MMM d, y"}} <span class="pull-right"><a role="button" data-toggle="collapse" data-target="#newcomment-{{$index}}" aria-expanded="false" aria-controls="newcomment" ng-show="authenticated">Comment</a></span></small>
             </div>
         </div>
         <div class="row collapse" id="newcomment-{{$index}}">
